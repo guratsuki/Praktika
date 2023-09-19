@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Добавление теста</title>
+
+</head>
+    <body>
+        <h1>Добавление теста</h1>
+
+        <form id="testForm">
+        <label for="testName">Название теста:</label>
+        <input type="text" id="testName" name="testName" required>
+
+
+        <button type="button" onclick="addQuestion()" id="qwe">Добавить вопрос</button>
+
+
+        <button type="submit">Сохранить</button>
+
+        </form>
+
+
+        <script>
+            let questionCounter = 0;
+
+            function addQuestion() {
+            questionCounter++;
+
+            const form = document.getElementById("testForm");
+            const questionDiv = document.createElement("div");
+            const questionLabel = document.createElement("label");
+            const questionInput = document.createElement("input");
+            const answerLabel = document.createElement("label");
+            const answerInput1 = document.createElement("input");
+            const answerInput2 = document.createElement("input");
+            const removeButton = document.createElement("button");
+
+            questionDiv.id = `question${questionCounter}`;
+            questionLabel.textContent = `Вопрос ${questionCounter}:`;
+            questionInput.type = "text";
+            questionInput.name = `question${questionCounter}`;
+            answerLabel.textContent = "Варианты ответа:";
+            answerInput1.type = "text";
+            answerInput1.name = `answer${questionCounter}1`;
+            answerInput2.type = "text";
+            answerInput2.name = `answer${questionCounter}2`;
+            removeButton.textContent = "Удалить";
+            removeButton.onclick = function() {
+            removeQuestion(questionDiv.id);
+            };
+
+            questionDiv.appendChild(questionLabel);
+            questionDiv.appendChild(questionInput);
+            questionDiv.appendChild(document.createElement("br"));
+            questionDiv.appendChild(answerLabel);
+            questionDiv.appendChild(document.createElement("br"));
+            questionDiv.appendChild(answerInput1);
+            questionDiv.appendChild(document.createElement("br"));
+            questionDiv.appendChild(answerInput2);
+            questionDiv.appendChild(document.createElement("br"));
+            questionDiv.appendChild(removeButton);
+            form.appendChild(questionDiv);
+            }
+
+            function removeQuestion(questionId) {
+            const questionDiv = document.getElementById(questionId);
+            questionDiv.parentNode.removeChild(questionDiv);
+            }
+        </script>
+
+    </body>
+</html>
